@@ -29,7 +29,8 @@ typedef struct t_list {
 #define BUFFER_SIZE 42
 #endif
 
-int ft_strlen(char *str);
+size_t ft_strlen(char *str);
+char	*ft_substr(const char *s, unsigned int start, size_t len);
 s_list* ft_lstnew();
 
 #endif
