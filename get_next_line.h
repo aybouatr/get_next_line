@@ -26,11 +26,14 @@ typedef struct t_list {
 }s_list;
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 42
+#define BUFFER_SIZE 5
 #endif
 
 size_t ft_strlen(char *str);
-char	*ft_substr(const char *s, unsigned int start, size_t len);
+char*  free_all_alcoted(s_list* head,s_list* list);
 s_list* ft_lstnew();
+void len_str_on_node_and_get_lastnod(s_list* node,size_t *len,size_t* len_rest,char c);
+char* get_just_str(s_list* node,size_t len,char c);
+char* get_string(s_list* node,char** s_str,char c);
 
 #endif
