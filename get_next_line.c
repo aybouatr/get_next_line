@@ -28,6 +28,8 @@ char*   get_read_str(int fd, char*  s_str)
         len_resd = read(fd, buffer,BUFFER_SIZE);
         if (len_resd == -1)
             return (free(buffer),NULL);
+        if (len_resd == 0 && s_str == NULL)
+            return (NULL);
         s_str = ft_strjoin(s_str,buffer);
        
     }
@@ -36,7 +38,7 @@ char*   get_read_str(int fd, char*  s_str)
 
 char*   get_than_line(char* s_str)
 {
-    int len;
+    size_t len;
     char* Buffer;
 
     len = 0;
@@ -63,14 +65,16 @@ char*   get_than_line(char* s_str)
 
 char* get_remminder(char* s_str)
 {
-    int len;
-    int i;
+    size_t len;
+    size_t i;
     char* Buffer;
 
     len = 0;
     i   = 0;
     while (s_str[len] != '\0' && s_str[len] != '\n')
         len++;
+    if (s_str[len] == '\0')
+        return (ft_strdup(""));
     Buffer = malloc(sizeof(char) + ((ft_strlen(s_str) - len) + 1));
     if(!Buffer)
         return (NULL);
@@ -101,22 +105,12 @@ char* get_next_line(int fd)
         return(NULL);
     s_str = get_remminder(s_str);
     if (!s_str)
-        return(NULL);
+        return (free(r_str), NULL);
+    if (s_str[0] == '\0')
+    {
+        s_str = NULL;
+    }
     return (r_str);
 
 }
 
-int main()
-{
-
-    int fd = open("text.txt", O_RDWR, 0644);
-
-    char *BUFFER = get_next_line(fd);
-    char *BU = get_next_line(fd);
-     
-    printf("--> %s\n", BUFFER);
-    printf("--> %s\n",BU);
-
-  
-
-}
