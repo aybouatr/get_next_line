@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aybouatr <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 11:30:17 by aybouatr          #+#    #+#             */
-/*   Updated: 2024/12/03 11:30:21 by aybouatr         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 # ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
@@ -18,22 +6,17 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-typedef struct t_list {
-
-    char *BUFFER;
-    struct t_list* next;
-
-}s_list;
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 5
+# define BUFFER_SIZE 1
 #endif
 
-size_t ft_strlen(char *str);
-char*  free_all_alcoted(s_list* head,s_list* list);
-s_list* ft_lstnew();
-void len_str_on_node_and_get_lastnod(s_list* node,size_t *len,size_t* len_rest,char c);
-char* get_just_str(s_list* node,size_t len,char c);
-char* get_string(s_list* node,char** s_str,char c);
+size_t	ft_strlen(const char *str);
+char	*ft_strdup(const char *s1);
+int	ft_strchr(const char *str, char search_str);
+char	*ft_strjoin(char const *s1, char const *s2);
+char*   get_read_str(int fd, char*  s_str);
+char* get_next_line(int fd);
+char* get_remminder(char* s_str);
 
 #endif
