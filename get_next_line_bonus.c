@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aybouatr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 10:28:06 by aybouatr          #+#    #+#             */
-/*   Updated: 2024/12/10 10:28:10 by aybouatr         ###   ########.fr       */
+/*   Created: 2024/12/11 09:06:02 by aybouatr          #+#    #+#             */
+/*   Updated: 2024/12/11 09:06:05 by aybouatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_read_str(int fd, char *s_str)
 {
@@ -92,25 +92,26 @@ char	*get_remminder(char *s_str)
 
 char	*get_next_line(int fd)
 {
-	static char	*s_str;
+	static char	*s_str[1024];
 	char		*r_str;
 
 	r_str = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if ((fd < 0 && fd > 1024) || BUFFER_SIZE <= 0)
 		return (NULL);
-	s_str = get_read_str(fd, s_str);
-	if (!s_str)
+	s_str[fd] = get_read_str(fd, s_str[fd]);
+	if (!s_str[fd])
 		return (NULL);
-	r_str = get_than_line(s_str);
+	r_str = get_than_line(s_str[fd]);
 	if (!r_str)
 		return (NULL);
-	s_str = get_remminder(s_str);
-	if (!s_str)
+	s_str[fd] = get_remminder(s_str[fd]);
+	if (!s_str[fd])
 		return (free(r_str), NULL);
-	if (s_str[0] == '\0')
+	if (s_str[fd][0] == '\0')
 	{
-		free(s_str);
-		s_str = NULL;
+		free(s_str[fd]);
+		s_str[fd] = NULL;
 	}
 	return (r_str);
 }
+
