@@ -78,5 +78,5 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	new[i] = '\0';
-	return (new);
+	return (free(s1), new);
 }

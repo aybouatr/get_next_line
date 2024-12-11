@@ -36,6 +36,7 @@ char	*get_read_str(int fd, char *s_str)
 		free(buffer);
 	}
 	return (s_str);
+}
 
 char	*get_than_line(char *s_str)
 {
@@ -96,7 +97,7 @@ char	*get_next_line(int fd)
 	char		*r_str;
 
 	r_str = NULL;
-	if ((fd < 0 && fd > 1024) || BUFFER_SIZE <= 0)
+	if ((fd < 0 || fd > 1024) || BUFFER_SIZE <= 0)
 		return (NULL);
 	s_str[fd] = get_read_str(fd, s_str[fd]);
 	if (!s_str[fd])
@@ -114,4 +115,3 @@ char	*get_next_line(int fd)
 	}
 	return (r_str);
 }
-
