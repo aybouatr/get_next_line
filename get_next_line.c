@@ -27,12 +27,13 @@ char	*get_read_str(int fd, char *s_str)
 		len_resd = read(fd, buffer, BUFFER_SIZE);
 		if (len_resd == -1)
 			return (free(buffer), NULL);
+		buffer[len_resd] = '\0';
 		if (len_resd == 0 && s_str == NULL)
 			return (free(buffer), NULL);
 		s_str = ft_strjoin(s_str, buffer);
 		if (!s_str)
 			return (free(buffer), NULL);
-		buffer = NULL;
+		free(buffer);
 	}
 	return (s_str);
 }

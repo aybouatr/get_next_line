@@ -28,6 +28,7 @@ char	*ft_strdup(const char *s1);
 int		ft_strchr(const char *str, char search_str);
 char	*ft_strjoin(char *s1, char *s2);
 char	*get_read_str(int fd, char *s_str);
+char	*get_than_line(char *s_str);
 char	*get_next_line(int fd);
 char	*get_remminder(char *s_str);
 
