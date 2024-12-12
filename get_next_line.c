@@ -16,12 +16,13 @@ char	*get_read_str(int fd, char *s_str)
 {
 	char	*buffer;
 	ssize_t	len_resd;
+	char	*temp;
 
 	len_resd = 1;
 	buffer = NULL;
 	while (!ft_strchr(s_str, '\n') && len_resd != 0)
 	{
-		buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
+		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (!buffer)
 			return (NULL);
 		len_resd = read(fd, buffer, BUFFER_SIZE);
@@ -30,7 +31,9 @@ char	*get_read_str(int fd, char *s_str)
 		buffer[len_resd] = '\0';
 		if (len_resd == 0 && s_str == NULL)
 			return (free(buffer), NULL);
+		temp = s_str;
 		s_str = ft_strjoin(s_str, buffer);
+		free(temp);
 		if (!s_str)
 			return (free(buffer), NULL);
 		free(buffer);

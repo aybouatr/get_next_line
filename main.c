@@ -2,12 +2,13 @@
 
 int	main(void)
 {
-	int fd = open("text.txt", O_RDWR, 0644);
-	char *str;
+	int		fd;
+	char	*str;
 
-	while((str=get_next_line(fd)))
+	fd = open("text.txt", O_RDWR, 0644);
+	while ((str = get_next_line(fd)))
 	{
-		printf("%s",str);
+		printf("%s", str);
 		free(str);
 	}
 	free(str);
