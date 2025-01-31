@@ -1,4 +1,4 @@
- # get_next_line
+# get_next_line
 
 **42 Project**: `get_next_line` - A function that reads a line from a file descriptor (such as a file or the standard input) one line at a time.
 
